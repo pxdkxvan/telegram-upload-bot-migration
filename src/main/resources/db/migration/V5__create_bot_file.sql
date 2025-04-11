@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS bot_file (
+    id BIGSERIAL PRIMARY KEY,
+    share_id UUID NOT NULL UNIQUE DEFAULT gen_random_uuid(),
+    telegram_id VARCHAR(255) NOT NULL UNIQUE,
+    telegram_unique_id VARCHAR(255) NOT NULL UNIQUE,
+    path VARCHAR(255) NOT NULL UNIQUE,
+    size BIGINT NOT NULL,
+    binary_id BIGINT NOT NULL UNIQUE REFERENCES bot_binary(id) ON DELETE CASCADE,
+    bot_user_id BIGINT REFERENCES bot_user(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS bot_photo (
+    id BIGINT PRIMARY KEY REFERENCES bot_file(id),
+    width INTEGER NOT NULL,
+    height INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS bot_document (
+    id BIGINT PRIMARY KEY REFERENCES bot_file(id),
+    name VARCHAR(255) NOT NULL,
+    mime_type VARCHAR(255) NOT NULL
+);

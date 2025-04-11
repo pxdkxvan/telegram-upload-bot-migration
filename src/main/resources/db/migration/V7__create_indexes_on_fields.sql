@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS telegram_unique_id ON bot_file(telegram_unique_id);

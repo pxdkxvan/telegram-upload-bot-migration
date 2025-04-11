@@ -1,0 +1,16 @@
+server:
+  port: ${MIGRATION_PORT}
+
+spring:
+
+  application:
+    name: ${MIGRATION_NAME}
+
+  profiles:
+    active:
+      - postgres
+      - flyway
+      - actuator
+
+  config:
+    import: configserver:${APPLICATION_PROTOCOL}://${CONFIG_HOST}:${CONFIG_PORT}

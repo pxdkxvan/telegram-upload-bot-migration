@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS bot_binary (
+    id BIGSERIAL PRIMARY KEY,
+    data OID NOT NULL
+);
